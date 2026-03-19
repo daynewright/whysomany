@@ -41,7 +41,7 @@ export function App() {
 
       <main className="min-h-screen bg-background text-foreground flex flex-col relative overflow-hidden selection:bg-[#2E7D32]/30 selection:text-white">
         {/* HERO SECTION */}
-        <section className="relative w-full pt-20 pb-32 md:pt-32 md:pb-48 bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#43A047] flex flex-col items-center justify-center text-center px-4 z-0">
+        <section className="relative w-full pt-10 pb-32 md:pt-16 md:pb-48 bg-gradient-to-br from-[#1B5E20] via-[#2E7D32] to-[#43A047] flex flex-col items-center justify-center text-center px-4 z-0">
           <AnimatedBackground />
 
           <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
