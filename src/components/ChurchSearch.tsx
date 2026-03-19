@@ -37,6 +37,31 @@ const churches = [
   address: '8083 Station Hill Dr, Spring Hill, TN'
 },
 {
+  name: 'The Bridge Church',
+  denomination: 'Non-Denominational',
+  address: '3005 Parkfield Loop S, Spring Hill, TN'
+},
+{
+  name: 'Spring Meadows Church of Christ',
+  denomination: 'Church of Christ',
+  address: '2985 Duplex Rd, Spring Hill, TN'
+},
+{
+  name: 'First Presbyterian Church',
+  denomination: 'Presbyterian',
+  address: '5344 Main St, Spring Hill, TN'
+},
+{
+  name: 'Grace Episcopal Church',
+  denomination: 'Episcopal',
+  address: '5291 Main St, Spring Hill, TN'
+},
+{
+  name: 'Peace Lutheran Church',
+  denomination: 'Lutheran',
+  address: '762 Beechcroft Rd, Spring Hill, TN'
+},
+{
   name: 'Grace Chapel Spring Hill',
   denomination: 'Non-Denominational',
   address: '3279 Southall Rd, Franklin, TN'
