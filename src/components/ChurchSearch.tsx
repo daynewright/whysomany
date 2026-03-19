@@ -2,6 +2,41 @@ import React, { useState, Component } from 'react';
 import { SearchIcon, MapPinIcon, ExternalLinkIcon } from 'lucide-react';
 const churches = [
 {
+  name: 'WellSpring Christian Church',
+  denomination: 'Christian Church',
+  address: "1001 Chapman's Crossing, Spring Hill, TN"
+},
+{
+  name: 'Christ Chapel',
+  denomination: 'Non-Denominational',
+  address: '3306 US-31, Spring Hill, TN'
+},
+{
+  name: 'Lifehouse Church',
+  denomination: 'Non-Denominational',
+  address: '5081 Main St, Spring Hill, TN'
+},
+{
+  name: 'Our Savior Church',
+  denomination: 'Non-Denominational',
+  address: '220 Town Center Pkwy, Spring Hill, TN'
+},
+{
+  name: 'Ascent Church',
+  denomination: 'Non-Denominational',
+  address: '100 Baker Springs Ln, Spring Hill, TN'
+},
+{
+  name: 'Community Baptist Church',
+  denomination: 'Baptist',
+  address: '5001 Port Royal Rd, Spring Hill, TN'
+},
+{
+  name: 'The Church at Station Hill',
+  denomination: 'Non-Denominational',
+  address: '8083 Station Hill Dr, Spring Hill, TN'
+},
+{
   name: 'Grace Chapel Spring Hill',
   denomination: 'Non-Denominational',
   address: '3279 Southall Rd, Franklin, TN'
@@ -54,7 +89,7 @@ const churches = [
 {
   name: 'The Church at Spring Hill',
   denomination: 'Non-Denominational',
-  address: '5001 Main St, Spring Hill, TN'
+  address: '4922 Port Royal Rd, Spring Hill, TN'
 },
 {
   name: 'New Hope Church of the Nazarene',
