@@ -1,4 +1,3 @@
-import React from 'react';
 import { VideoPlayer } from './components/VideoPlayer';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { ChurchSearch } from './components/ChurchSearch';
@@ -46,15 +45,18 @@ export function App() {
           <AnimatedBackground />
 
           <div className="relative z-10 flex flex-col items-center max-w-4xl mx-auto">
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-widest animate-fade-up opacity-0 drop-shadow-lg">
-              Why So Many?
-            </h1>
-
-            <div className="w-24 h-1 bg-white/60 mt-8 mb-6 rounded-full animate-scale-x opacity-0 delay-300"></div>
-
-            <p className="text-lg md:text-xl text-white/80 font-medium tracking-wide animate-fade-up opacity-0 delay-500">
-              The question everyone's asking.
-            </p>
+            <div className="flex items-center justify-center animate-fade-up opacity-0" style={{ gap: 'clamp(8px, 2vw, 14px)' }}>
+              <img
+                src="/images/whysomany_churchIcon_final_reverse.png"
+                alt="Why So Many church icon"
+                style={{ height: 'clamp(120px, 20vw, 260px)', width: 'auto', flexShrink: 0 }}
+              />
+              <img
+                src="/images/whysomany_logo2_4x4_final_reverse.png"
+                alt="Why So Many wordmark"
+                style={{ height: 'clamp(120px, 20vw, 260px)', width: 'auto' }}
+              />
+            </div>
           </div>
         </section>
 
