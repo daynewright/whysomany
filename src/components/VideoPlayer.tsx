@@ -11,7 +11,9 @@ import {
   RotateCcwIcon,
   Volume2Icon,
   Volume1Icon,
-  VolumeXIcon } from
+  VolumeXIcon,
+  MaximizeIcon,
+  MinimizeIcon } from
 'lucide-react';
 function formatTime(seconds: number): string {
   const mins = Math.floor(seconds / 60);
@@ -19,6 +21,7 @@ function formatTime(seconds: number): string {
   return `${mins}:${secs.toString().padStart(2, '0')}`;
 }
 export function VideoPlayer() {
+  const playerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const progressBarRef = useRef<HTMLDivElement>(null);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -30,6 +33,7 @@ export function VideoPlayer() {
   const [duration, setDuration] = useState(0);
   const [showControls, setShowControls] = useState(true);
   const [isVolumeOpen, setIsVolumeOpen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   // Auto-hide controls after 3 seconds of inactivity
   const resetHideTimer = useCallback(() => {
     setShowControls(true);
@@ -74,6 +78,15 @@ export function VideoPlayer() {
       video.removeEventListener('loadedmetadata', onLoadedMetadata);
       video.removeEventListener('play', onPlay);
       video.removeEventListener('pause', onPause);
+    };
+  }, []);
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      setIsFullscreen(Boolean(document.fullscreenElement));
+    };
+    document.addEventListener('fullscreenchange', onFullscreenChange);
+    return () => {
+      document.removeEventListener('fullscreenchange', onFullscreenChange);
     };
   }, []);
   // Initial hide timer
@@ -139,6 +152,23 @@ export function VideoPlayer() {
   const handleVideoClick = () => {
     togglePlay();
   };
+  const toggleFullscreen = async () => {
+    const player = playerRef.current;
+    const video = videoRef.current as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
+    if (!player && !video) return;
+    try {
+      if (document.fullscreenElement) {
+        await document.exitFullscreen();
+      } else if (player?.requestFullscreen) {
+        await player.requestFullscreen();
+      } else if (video?.webkitEnterFullscreen) {
+        video.webkitEnterFullscreen();
+      }
+    } catch {
+      // Ignore fullscreen errors when browser blocks request.
+    }
+    resetHideTimer();
+  };
   const VolumeIconComponent =
   isMuted || volume === 0 ?
   VolumeXIcon :
@@ -147,6 +177,7 @@ export function VideoPlayer() {
   Volume2Icon;
   return (
     <div
+      ref={playerRef}
       className="relative w-full rounded-2xl overflow-hidden bg-black/40 backdrop-blur-xl border border-white/20 shadow-[0_0_60px_rgba(46,125,50,0.3)] aspect-video select-none"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -200,12 +231,26 @@ export function VideoPlayer() {
         playsInline
         src="/videos/why-so-many-promo.mp4" />
       
+      {/* Always-visible quick mute toggle */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleMute();
+        }}
+        className="absolute top-4 right-4 z-30 inline-flex items-center gap-2 rounded-full bg-black/55 hover:bg-black/70 text-white px-3 py-2 backdrop-blur-md border border-white/25 transition-colors focus:outline-none"
+        aria-label={isMuted ? 'Unmute video' : 'Mute video'}>
+        <VolumeIconComponent className="w-4 h-4" />
+        <span className="text-xs font-semibold tracking-wide">
+          {isMuted || volume === 0 ? 'Unmute' : 'Mute'}
+        </span>
+      </button>
+
 
       {/* Big play button overlay when paused */}
       {!isPlaying &&
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-          <div className="bg-black/50 backdrop-blur-sm rounded-full p-5">
-            <PlayIcon className="w-12 h-12 text-white fill-white" />
+          <div className="bg-black/50 backdrop-blur-sm rounded-full p-3 sm:p-4 md:p-5">
+            <PlayIcon className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-white fill-white" />
           </div>
         </div>
       }
@@ -262,6 +307,16 @@ export function VideoPlayer() {
                 aria-label="Restart video">
                 
                 <RotateCcwIcon className="w-4.5 h-4.5" />
+              </button>
+
+              <button
+                onClick={toggleFullscreen}
+                className="text-white hover:text-[#43A047] p-1.5 rounded-lg transition-colors focus:outline-none"
+                aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}>
+                {isFullscreen ?
+                <MinimizeIcon className="w-4.5 h-4.5" /> :
+                <MaximizeIcon className="w-4.5 h-4.5" />
+                }
               </button>
 
               {/* Volume */}
