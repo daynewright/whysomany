@@ -1,2 +1,4 @@
 .DS_Store
-node_modules*.mov
+node_modules
+*.mov
+public/videos/*.mov

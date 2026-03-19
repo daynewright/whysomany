@@ -198,8 +198,7 @@ export function VideoPlayer() {
         muted
         loop
         playsInline
-        // REPLACE THIS URL WITH YOUR HOSTED MP4 FILE URL
-        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4" />
+        src="/videos/why-so-many-promo.mp4" />
       
 
       {/* Big play button overlay when paused */}
