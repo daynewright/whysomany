@@ -1,9 +1,11 @@
+import { Analytics } from '@vercel/analytics/react';
 import { VideoPlayer } from './components/VideoPlayer';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { ChurchSearch } from './components/ChurchSearch';
 export function App() {
   return (
     <>
+      <Analytics />
       <style>
         {`
           @keyframes fadeUp {
