@@ -1,10 +1,30 @@
-import React, { useState, Component } from 'react';
+import { useState } from 'react';
 import { SearchIcon, MapPinIcon, ExternalLinkIcon } from 'lucide-react';
 const churches = [
 {
   name: 'WellSpring Christian Church',
   denomination: 'Christian Church',
   address: "1001 Chapman's Crossing, Spring Hill, TN"
+},
+{
+  name: 'Southview Church',
+  denomination: 'Non-Denominational',
+  address: '5000 Northfield Ln, Spring Hill, TN'
+},
+{
+  name: 'Church of the City',
+  denomination: 'Non-Denominational',
+  address: '4910 Main Street, Spring Hill, TN'
+},
+{
+  name: 'HopeUC',
+  denomination: 'Non-Denominational',
+  address: "4683 Columbia Pike, Thompson's Station, TN"
+},
+{
+  name: 'Church of the Nativity',
+  denomination: 'Catholic',
+  address: '2793 Buckner Ln, Spring Hill, TN'
 },
 {
   name: 'Christ Chapel',
@@ -62,24 +82,9 @@ const churches = [
   address: '762 Beechcroft Rd, Spring Hill, TN'
 },
 {
-  name: 'Grace Chapel Spring Hill',
-  denomination: 'Non-Denominational',
-  address: '3279 Southall Rd, Franklin, TN'
-},
-{
   name: 'Spring Hill Church of Christ',
   denomination: 'Church of Christ',
   address: '102 Municipal Dr, Spring Hill, TN'
-},
-{
-  name: 'Calvary Chapel Spring Hill',
-  denomination: 'Calvary Chapel',
-  address: '1095 Campbell Station Pkwy, Spring Hill, TN'
-},
-{
-  name: 'Connection Point Church',
-  denomination: 'Non-Denominational',
-  address: '1097 Crossings Blvd, Spring Hill, TN'
 },
 {
   name: 'First Baptist Church Spring Hill',
@@ -92,34 +97,9 @@ const churches = [
   address: '3200 Port Royal Rd, Spring Hill, TN'
 },
 {
-  name: 'Redemption City Church',
-  denomination: 'Non-Denominational',
-  address: '1200 Town Center Pkwy, Spring Hill, TN'
-},
-{
-  name: 'St. Michael Catholic Church',
-  denomination: 'Catholic',
-  address: '404 McCutcheon Creek Rd, Spring Hill, TN'
-},
-{
-  name: 'Crosspoint Community Church',
-  denomination: 'Non-Denominational',
-  address: '1000 Spring Hill Pkwy, Spring Hill, TN'
-},
-{
-  name: 'Heritage Baptist Church',
-  denomination: 'Baptist',
-  address: '3480 Port Royal Rd, Spring Hill, TN'
-},
-{
   name: 'The Church at Spring Hill',
   denomination: 'Non-Denominational',
   address: '4922 Port Royal Rd, Spring Hill, TN'
-},
-{
-  name: 'New Hope Church of the Nazarene',
-  denomination: 'Nazarene',
-  address: '3060 Duplex Rd, Spring Hill, TN'
 },
 {
   name: 'Spring Hill Presbyterian Church',
@@ -132,54 +112,9 @@ const churches = [
   address: '1501 Jim Warren Rd, Spring Hill, TN'
 },
 {
-  name: 'Fellowship Bible Church',
-  denomination: 'Non-Denominational',
-  address: '2120 Beechcroft Rd, Spring Hill, TN'
-},
-{
-  name: 'Bethesda Church of Christ',
-  denomination: 'Church of Christ',
-  address: "4919 Bethesda Rd, Thompson's Station, TN"
-},
-{
-  name: 'Revolution Church',
-  denomination: 'Non-Denominational',
-  address: '3020 Reserve Blvd, Spring Hill, TN'
-},
-{
-  name: 'Spring Hill Seventh-Day Adventist',
-  denomination: 'Seventh-Day Adventist',
-  address: '3032 Duplex Rd, Spring Hill, TN'
-},
-{
-  name: 'Harvest View Church',
-  denomination: 'Non-Denominational',
-  address: '4763 Port Royal Rd, Spring Hill, TN'
-},
-{
-  name: 'Mt. Pleasant Baptist Church',
-  denomination: 'Baptist',
-  address: '2824 Duplex Rd, Spring Hill, TN'
-},
-{
-  name: 'Christ Community Church',
-  denomination: 'Non-Denominational',
-  address: '1200 Saturn Pkwy, Spring Hill, TN'
-},
-{
-  name: 'Epic Life Church',
-  denomination: 'Non-Denominational',
-  address: '5000 Main St, Spring Hill, TN'
-},
-{
   name: 'Maury Hills Church',
   denomination: 'Church of Christ',
   address: '1124 Hatcher Ln, Columbia, TN'
-},
-{
-  name: 'Neapolis Church of Christ',
-  denomination: 'Church of Christ',
-  address: '4450 Kedron Rd, Spring Hill, TN'
 },
 {
   name: "Thompson's Station Church",
@@ -190,16 +125,6 @@ const churches = [
   name: 'Longview Baptist Church',
   denomination: 'Baptist',
   address: '4904 Kedron Rd, Spring Hill, TN'
-},
-{
-  name: 'Spring Hill Assembly of God',
-  denomination: 'Assembly of God',
-  address: '3100 Duplex Rd, Spring Hill, TN'
-},
-{
-  name: 'The Belonging Co Spring Hill',
-  denomination: 'Non-Denominational',
-  address: 'Spring Hill, TN'
 },
 {
   name: 'Refuge Church',
@@ -232,7 +157,7 @@ export function ChurchSearch() {
           Churches in Spring Hill, TN
         </h2>
         <p className="text-muted-foreground text-lg">
-          Explore churches in your community
+          Explore churches in our community
         </p>
       </div>
 

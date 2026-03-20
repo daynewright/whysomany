@@ -157,12 +157,34 @@ export function VideoPlayer() {
     const video = videoRef.current as (HTMLVideoElement & { webkitEnterFullscreen?: () => void }) | null;
     if (!player && !video) return;
     try {
+      const orientation = (screen as any).orientation as { lock?: (o: string) => Promise<void> | void; unlock?: () => void };
+      const lockLandscape = async () => {
+        try {
+          await orientation?.lock?.('landscape');
+        } catch {
+          // Ignore if the browser blocks orientation locking.
+        }
+      };
+      const unlockOrientation = async () => {
+        try {
+          orientation?.unlock?.();
+        } catch {
+          // Ignore if the browser blocks unlocking.
+        }
+      };
+
       if (document.fullscreenElement) {
         await document.exitFullscreen();
-      } else if (player?.requestFullscreen) {
-        await player.requestFullscreen();
-      } else if (video?.webkitEnterFullscreen) {
-        video.webkitEnterFullscreen();
+        await unlockOrientation();
+      } else {
+        await lockLandscape();
+        if (video?.requestFullscreen) {
+          await video.requestFullscreen();
+        } else if (video?.webkitEnterFullscreen) {
+          video.webkitEnterFullscreen();
+        } else if (player?.requestFullscreen) {
+          await player.requestFullscreen();
+        }
       }
     } catch {
       // Ignore fullscreen errors when browser blocks request.
@@ -224,7 +246,7 @@ export function VideoPlayer() {
 
       <video
         ref={videoRef}
-        className="w-full h-full object-cover cursor-pointer"
+        className={`w-full h-full cursor-pointer ${isFullscreen ? 'object-contain' : 'object-cover'}`}
         autoPlay
         muted
         loop
