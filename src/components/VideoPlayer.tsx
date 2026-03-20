@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useState,
   useRef,
-  Component } from
+  } from
 'react';
 import {
   PlayIcon,
@@ -178,10 +178,11 @@ export function VideoPlayer() {
         await unlockOrientation();
       } else {
         await lockLandscape();
-        if (video?.requestFullscreen) {
-          await video.requestFullscreen();
-        } else if (video?.webkitEnterFullscreen) {
+        // Prefer the iOS Safari fullscreen API so it can honor landscape better.
+        if (video?.webkitEnterFullscreen) {
           video.webkitEnterFullscreen();
+        } else if (video?.requestFullscreen) {
+          await video.requestFullscreen();
         } else if (player?.requestFullscreen) {
           await player.requestFullscreen();
         }
