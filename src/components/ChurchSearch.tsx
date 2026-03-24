@@ -7,6 +7,11 @@ const churches = [
   address: "1001 Chapman's Crossing, Spring Hill, TN"
 },
 {
+  name: 'The Gathering Church',
+  denomination: 'Non-Denominational',
+  address: '3035 Reserve Blvd, Spring Hill, TN'
+},
+{
   name: 'Southview Church',
   denomination: 'Non-Denominational',
   address: '5000 Northfield Ln, Spring Hill, TN'
