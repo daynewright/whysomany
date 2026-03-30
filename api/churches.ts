@@ -1,6 +1,12 @@
 import './_loadEnv';
 import { kv } from '@vercel/kv';
 
+/** Runtime is correct; @vercel/kv + @upstash/redis typings can disagree under TS 5.9+ in some installs. */
+const kvStore = kv as {
+  get: <T>(key: string) => Promise<T | null>;
+  set: (key: string, value: unknown) => Promise<string | null>;
+};
+
 const KV_KEY = 'churches:list:v1';
 const hasKvWriteConfig = Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
 
@@ -29,7 +35,7 @@ export default async function handler(req: any, res: any) {
       return res.status(200).json({ churches: [] });
     }
     try {
-      const churches = await kv.get<Church[]>(KV_KEY);
+      const churches = await kvStore.get<Church[]>(KV_KEY);
       return res.status(200).json({ churches: churches ?? [] });
     } catch {
       return res.status(200).json({ churches: [] });
@@ -57,7 +63,7 @@ export default async function handler(req: any, res: any) {
     }
 
     try {
-      await kv.set(KV_KEY, churches);
+      await kvStore.set(KV_KEY, churches);
       return res.status(200).json({ ok: true, count: churches.length });
     } catch {
       return res.status(500).json({ error: 'Unable to save churches to KV' });
