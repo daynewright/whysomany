@@ -2,7 +2,19 @@ import { Analytics } from '@vercel/analytics/react';
 import { VideoPlayer } from './components/VideoPlayer';
 import { AnimatedBackground } from './components/AnimatedBackground';
 import { ChurchSearch } from './components/ChurchSearch';
+import { AdminChurches } from './components/AdminChurches';
 export function App() {
+  const isAdminPage = typeof window !== 'undefined' && window.location.pathname.startsWith('/updatechurches');
+
+  if (isAdminPage) {
+    return (
+      <>
+        <Analytics />
+        <AdminChurches />
+      </>
+    );
+  }
+
   return (
     <>
       <Analytics />

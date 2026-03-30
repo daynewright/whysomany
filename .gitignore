@@ -2,3 +2,6 @@
 node_modules
 *.mov
 public/videos/*.mov
+.vercel
+.env
+.env*.local

@@ -1,0 +1,19 @@
+{
+  "headers": [
+    {
+      "source": "/updatechurches",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/updatechurches",
+      "destination": "/"
+    }
+  ]
+}
