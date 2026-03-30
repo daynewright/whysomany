@@ -1,4 +1,4 @@
-import './_loadEnv';
+import './_loadEnv.js';
 
 export default async function handler(req: any, res: any) {
   if (req.method !== 'POST') {

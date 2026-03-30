@@ -1,4 +1,4 @@
-import './_loadEnv';
+import './_loadEnv.js';
 import { kv } from '@vercel/kv';
 
 /** Runtime is correct; @vercel/kv + @upstash/redis typings can disagree under TS 5.9+ in some installs. */
