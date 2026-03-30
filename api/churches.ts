@@ -2,7 +2,7 @@ import './_loadEnv';
 import { kv } from '@vercel/kv';
 
 /** Runtime is correct; @vercel/kv + @upstash/redis typings can disagree under TS 5.9+ in some installs. */
-const kvStore = kv as {
+const kvStore = kv as unknown as {
   get: <T>(key: string) => Promise<T | null>;
   set: (key: string, value: unknown) => Promise<string | null>;
 };
