@@ -1,6 +1,6 @@
 import type { Church } from '../data/defaultChurches';
 
-export const CHURCH_CACHE_KEY = 'wsm_churches_cache_v1';
+export const CHURCH_CACHE_KEY = 'wsm_churches_cache_v2';
 const CHURCH_CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
 
 type ChurchCachePayload = {

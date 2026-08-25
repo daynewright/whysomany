@@ -91,7 +91,7 @@ export function ChurchSearch() {
       {filteredChurches.length > 0 ?
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
           {filteredChurches.map((church, index) => {
-          const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${church.name} ${church.address}`)}`;
+          const mapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(church.address)}`;
           return (
             <div
               key={index}

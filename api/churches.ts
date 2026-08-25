@@ -7,7 +7,7 @@ const kvStore = kv as unknown as {
   set: (key: string, value: unknown) => Promise<string | null>;
 };
 
-const KV_KEY = 'churches:list:v1';
+const KV_KEY = 'churches:list:v2';
 const hasKvWriteConfig = Boolean(process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN);
 
 type Church = {
